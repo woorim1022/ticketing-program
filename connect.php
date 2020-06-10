@@ -68,7 +68,7 @@
 			}
 			echo "<h3>예매가 완료되었습니다</h3>";
 		}else if($id && (!$result2) && $seatqty) echo "<h3>같은 날짜에 이미 예매하셨습니다</h3>";
-		else if(!$seatqty) echo "<h3>좌석을 선택하지 않으셨습니다</h3>"
+		else if(!$seatqty && $id) echo "<h3>좌석을 선택하지 않으셨습니다</h3>";
 	
 ?> 
 

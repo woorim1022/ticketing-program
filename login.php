@@ -41,15 +41,20 @@
 
 
 <?php 
-    echo "<h2>예매 확인</h2>";
-
+    echo "<h2>예매 확인/취소</h2>";
+   
     $sql1 = "SELECT m.m_name, r.* FROM reservation r, musical m WHERE r.m_number=m.m_number AND r.id='$id'";
     $result1 = mysqli_query($conn, $sql1);
     if (mysqli_num_rows($result1)>0){
+        echo "<form action='cancel.php' method='post' name='form'>";
         while($row1 = mysqli_fetch_assoc($result1)) {
-                            echo  " 제목 : " . $row1["m_name"]. "&nbsp&nbsp&nbsp날짜 : " . $row1["m_date"]. "&nbsp&nbsp&nbsp예매수량 : " . $row1["seatqty"]."<br>";
-		}
-    } else echo "존재하지 않는 회원입니다!";
+
+            echo   "&nbsp<input type='radio' name='cancel' value='" .$id. ",".$row1["m_number"]. ",".$row1["m_date"]. ",".$row1["seatqty"]. "'>";
+            echo  "제목 : " . $row1["m_name"]. "&nbsp&nbsp&nbsp날짜 : " . $row1["m_date"]. "&nbsp&nbsp&nbsp예매수량 : " . $row1["seatqty"]."<br>";
+        }
+        echo  "<input type='submit' value='취소하기'>"; 
+        echo "</form>";
+    } else echo "예매내역이 없습니다";
 
 
     
